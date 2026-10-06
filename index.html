@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renal Genetics · Podocytopathy + Hereditary Dx & Tx</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f9fe;
+            color: #0b2b4a;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+        .app-container {
+            max-width: 1450px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 30, 60, 0.08);
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b2b4a;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        h1 span {
+            background: #0b2b4a;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+        .subhead {
+            font-size: 1.05rem;
+            color: #2c5779;
+            border-left: 4px solid #3b8fc2;
+            padding-left: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 40, 80, 0.04);
+            border: 1px solid #d2e5f3;
+            transition: box-shadow 0.15s ease;
+        }
+        .card:hover { box-shadow: 0 8px 24px rgba(0, 60, 120, 0.08); }
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #0b2b4a;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid #e2eff9;
+            padding-bottom: 0.75rem;
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.75rem;
+            color: #1a4b70;
+        }
+        .badge {
+            display: inline-block;
+            background: #e5f0fa;
+            color: #0b4f7c;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+        .badge-green { background: #dff3e5; color: #0e6b3e; }
+        .badge-amber { background: #fef1d6; color: #8a5e00; }
+        .badge-red { background: #ffe3e0; color: #a12d1f; }
+        .badge-purple { background: #efe0fa; color: #5e2e8a; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        th {
+            background: #e8f2fb;
+            text-align: left;
+            padding: 0.8rem 0.9rem;
+            font-weight: 600;
+            color: #0b2b4a;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid #c6dcee;
+        }
+        td {
+            padding: 0.7rem 0.9rem;
+            border-bottom: 1px solid #e2eff9;
+            vertical-align: top;
+        }
+        tr:last-child td { border-bottom: none; }
+        .gene-tag {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f0f5fa;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #145a8a;
+            white-space: nowrap;
+        }
+        .alert {
+            background: #fef9e7;
+            border-left: 6px solid #f5b041;
+            padding: 1.2rem 1.5rem;
+            border-radius: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .alert-blue { background: #e9f2fc; border-left-color: #3b8fc2; }
+        .alert-green { background: #e8f6ef; border-left-color: #2e9b5c; }
+        .alert-purple { background: #f3ecfb; border-left-color: #8e5eb8; }
+        .step-list {
+            list-style: none;
+            counter-reset: step;
+            margin: 1rem 0;
+        }
+        .step-list li {
+            counter-increment: step;
+            margin-bottom: 0.8rem;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+        .step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: #1d6fa5;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pill {
+            background: #deecf7;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.1rem 0.2rem;
+        }
+        .flow-box {
+            background: #f7fbfe;
+            padding: 1.2rem 1.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid #c6dcee;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+        .flow-box strong { color: #0e4f7c; }
+        .footer-note {
+            font-size: 0.8rem;
+            color: #5b7f9a;
+            margin-top: 2rem;
+            border-top: 1px solid #d2e5f3;
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #f9f1d9 0%, #f9f1d9 40%, transparent 80%);
+            padding: 0.1rem 0.3rem;
+            font-weight: 500;
+        }
+        .two-col-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.88rem;
+        }
+        .pedigree-box {
+            background: #f0f7fc;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.88rem;
+            border: 1px dashed #9ac2e0;
+            margin: 0.8rem 0;
+        }
+        .pedigree-symbol {
+            font-family: monospace;
+            font-size: 1rem;
+            background: #deecf7;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.88rem;
+        }
+        .checklist li {
+            padding: 0.35rem 0 0.35rem 1.8rem;
+            position: relative;
+        }
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e9b5c;
+            font-weight: 700;
+        }
+        .checklist li.cross::before {
+            content: "✗";
+            color: #c0392b;
+        }
+        @media (max-width: 950px) {
+            .grid-2col, .grid-3col { grid-template-columns: 1fr; }
+            .app-container { padding: 1.5rem; }
+            h1 { font-size: 1.8rem; }
+            .two-col-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <h1>
+        🧬 Renal Genetics · Dx & Tx
+        <span>Podocytopathy + Hereditary</span>
+    </h1>
+    <div class="subhead">
+        Diagnostic and therapeutic guide for hereditary glomerular diseases — FSGS, Alport spectrum, ADPKD, APOL1 kidney disease, CoQ10‑responsive podocytopathies, and pedigree analysis.
+    </div>
+
+    <!-- ==================== ROW 1: ALGORITHM + PEDIGREE ==================== -->
+    <div class="grid-2col">
+        <!-- ALGORITHM -->
+        <div class="card">
+            <h2>📋 Diagnostic algorithm</h2>
+            <p style="font-size:0.88rem; margin-bottom:1rem; color:#2c5779;">Stepwise approach to genetic testing in glomerular and cystic kidney disease.</p>
+            <ol class="step-list">
+                <li><strong>Confirm phenotype</strong> — nephrotic syndrome, FSGS, hematuria, cystic disease, or unexplained CKD.</li>
+                <li><strong>Assess age of onset & family history</strong> — early onset (<50 yr) significantly raises pretest probability [citation:8].</li>
+                <li><strong>Exclude secondary causes</strong> — autoimmune, monoclonal, infection, drugs (see table).</li>
+                <li><strong>Check steroid responsiveness</strong> — <span class="pill">SSNS</span> → no genetic testing. <span class="pill">SRNS</span> → proceed.</li>
+                <li><strong>Look for extrarenal clues</strong> — hearing loss, ocular abnormalities, neurologic features, Wilms tumor, liver cysts.</li>
+                <li><strong>Order targeted NGS panel</strong> — first-line. WES/WGS if panel negative or atypical.</li>
+                <li><strong>Interpret variants</strong> — use ClinGen curation (Definitive/Strong vs VUS).</li>
+                <li><strong>Act on diagnosis</strong> — CoQ10, RAS blockade, immunosuppression avoidance, surveillance, family screening.</li>
+            </ol>
+            <div class="alert alert-blue" style="margin-top:0.5rem;">
+                <strong>🔬 When to test — guideline consensus:</strong><br>
+                ✔️ Congenital, infantile, or syndromic nephrotic syndrome.<br>
+                ✔️ Primary SRNS (children & adults).<br>
+                ✔️ FSGS with family history, syndromic features, or steroid resistance.<br>
+                ✔️ Persistent hematuria, proteinuria, unexplained kidney failure, or FSGS of unknown origin (Alport workup) [citation:1][citation:13].<br>
+                ✔️ Cystic kidney disease (ADPKD).<br>
+                ❌ <strong>Not</strong> in steroid‑sensitive nephrotic syndrome (including familial).
+            </div>
+        </div>
+
+        <!-- PEDIGREE ANALYSIS -->
+        <div class="card">
+            <h2>🌳 Pedigree analysis</h2>
+            <p style="font-size:0.88rem;">A well‑constructed pedigree is the highest‑yield “genetic test” and guides inheritance pattern, testing strategy, and donor selection.</p>
+            
+            <div class="pedigree-box">
+                <strong>📐 Key symbols & patterns</strong>
+                <ul style="margin-top:0.5rem; padding-left:1.2rem;">
+                    <li><span class="pedigree-symbol">□ ○</span> Unaffected male / female</li>
+                    <li><span class="pedigree-symbol">■ ●</span> Affected male / female</li>
+                    <li><span class="pedigree-symbol">◊</span> Sex unknown</li>
+                    <li><span class="pedigree-symbol">—</span> Consanguinity (double line)</li>
+                </ul>
+            </div>
+
+            <h3>🔍 Inheritance patterns to recognize</h3>
+            <table>
+                <thead><tr><th>Pattern</th><th>Key features</th><th>Example genes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>X‑linked</strong></td><td>Males affected > females; no male‑to‑male transmission; carrier females may have hematuria</td><td><span class="gene-tag">COL4A5</span> (Alport)</td></tr>
+                    <tr><td><strong>Autosomal dominant</strong></td><td>Vertical transmission; each generation affected; variable severity</td><td><span class="gene-tag">PKD1</span>, <span class="gene-tag">PKD2</span> (ADPKD), <span class="gene-tag">INF2</span>, <span class="gene-tag">ACTN4</span></td></tr>
+                    <tr><td><strong>Autosomal recessive</strong></td><td>Horizontal transmission; consanguinity common; parents unaffected carriers</td><td><span class="gene-tag">NPHS1</span>, <span class="gene-tag">NPHS2</span>, <span class="gene-tag">COQ2/6/8B</span></td></tr>
+                    <tr><td><strong>Digenic</strong></td><td>Variants in two genes; may worsen phenotype</td><td><span class="gene-tag">COL4A3</span> + <span class="gene-tag">COL4A4</span></td></tr>
+                </tbody>
+            </table>
+
+            <div class="alert alert-purple" style="margin-top:0.8rem;">
+                <strong>⚠️ Pitfalls:</strong> Incomplete penetrance (e.g., APOL1 — only ~15–20% of high‑risk carriers develop overt nephropathy [citation:9]), phenotypic variability, and de novo mutations can mask inheritance. <strong>Do not exclude sporadic cases from testing</strong> based solely on negative family history [citation:2].
+            </div>
+
+            <h3>👪 Family screening implications</h3>
+            <ul style="font-size:0.88rem; padding-left:1.2rem;">
+                <li>Genetic diagnosis enables <strong>presymptomatic screening</strong> of at‑risk relatives [citation:2].</li>
+                <li>Living‑donor evaluation: <span class="gene-tag">COL4A3/A4</span> heterozygous carriers should be considered for donation as <strong>last possible resource</strong> [citation:1][citation:13].</li>
+                <li>Family planning — prenatal and preimplantation genetic diagnosis options.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== ROW 2: GENE GROUPS ==================== -->
+    <div class="card">
+        <h2>🧬 Gene groups & clinical actions — including FSGS, Alport, ADPKD</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Disease / gene group</th>
+                        <th>Typical onset</th>
+                        <th>Key features & pedigree clues</th>
+                        <th>Diagnostic approach</th>
+                        <th>Treatment / management</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>NPHS1 (nephrin)</strong> — congenital NS</td>
+                        <td>0–3 months</td>
+                        <td>Severe nephrotic syndrome; AR; consanguinity common</td>
+                        <td>NGS panel (congenital NS)</td>
+                        <td>Supportive; transplant (no recurrence)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NPHS2 (podocin)</strong> — SRNS/FSGS</td>
+                        <td>Childhood / adolescence</td>
+                        <td>Familial SRNS, steroid resistant; AR; <strong>no recurrence post‑transplant</strong></td>
+                        <td>NGS panel; <span class="gene-tag">NPHS2</span> sequencing</td>
+                        <td>Avoid immunosuppression; transplant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>INF2, TRPC6, ACTN4</strong> — AD FSGS</td>
+                        <td>Adolescent / adult</td>
+                        <td>Autosomal dominant FSGS; vertical transmission; variable progression</td>
+                        <td>NGS panel; pedigree shows affected in each generation</td>
+                        <td>Supportive; no immunosuppression; transplant if ESRD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WT1</strong> — Denys‑Drash / Frasier</td>
+                        <td>Infantile / childhood</td>
+                        <td>Nephropathy + gonadal dysgenesis + Wilms tumor risk; may be de novo</td>
+                        <td>NGS + karyotype; tumor surveillance</td>
+                        <td>Nephrectomy considerations; tumor screening; transplant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CoQ10 pathway</strong> — <span class="gene-tag">COQ2/6/8B/PDSS2</span></td>
+                        <td>Infantile / childhood / young adult</td>
+                        <td>SRNS/FSGS; may have neurologic or cardiac features; AR</td>
+                        <td>NGS panel; consider muscle CoQ10 levels</td>
+                        <td><span class="badge-green badge">High‑dose oral CoQ10</span> (15–50 mg/kg/day) — start early</td>
+                    </tr>
+                    <tr>
+                        <td><strong>COL4A3/A4/A5</strong> — Alport spectrum</td>
+                        <td>Childhood → adult</td>
+                        <td>Hematuria, sensorineural hearing loss, ocular changes, FSGS; X‑linked (COL4A5) or AR/AD (COL4A3/A4)</td>
+                        <td>NGS; <strong>test in persistent hematuria, proteinuria, unexplained CKD, FSGS of unknown origin</strong> [citation:1][citation:13]</td>
+                        <td>Early RAS blockade (ACEi/ARB); SGLT2i may be added for adults with proteinuria & CKD [citation:1][citation:13]; avoid immunosuppression; family screening</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PKD1 / PKD2</strong> — ADPKD</td>
+                        <td>Adulthood (variable)</td>
+                        <td>Bilateral kidney cysts, liver cysts, hypertension; AD; ~85% PKD1, ~15% PKD2; two‑hit mechanism [citation:4]</td>
+                        <td>Genetic testing for atypical cases, early onset, or negative imaging; AD inheritance on pedigree</td>
+                        <td>BP control, hydration, tolvaptan (selected), pain management, cyst complications; transplant evaluation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>APOL1</strong> risk alleles (G1/G2)</td>
+                        <td>Adulthood</td>
+                        <td>Risk modifier — FSGS, HIVAN, hypertension‑attributed kidney failure; <strong>incomplete penetrance ~15–20%</strong> [citation:9]; requires secondary trigger</td>
+                        <td>APOL1 genotyping in high‑risk populations (African ancestry); not routine population screening [citation:15]</td>
+                        <td>Aggressive BP control; RAS blockade; avoid interferon; genetic counseling; clinical trial eligibility [citation:15]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== ROW 3: WHEN TO TEST + APOL1 ==================== -->
+    <div class="grid-2col">
+        <!-- WHEN TO CONSIDER GENETIC ANALYSIS -->
+        <div class="card">
+            <h2>📌 When to consider genetic analysis</h2>
+            <p style="font-size:0.88rem;">Based on recent CKD genetics guidelines and expert consensus [citation:8].</p>
+            
+            <h3>✅ Strongly recommended</h3>
+            <ul class="checklist">
+                <li>CKD diagnosed <strong>before age 50</strong> without clear nongenetic cause (yield up to ~20%) [citation:8]</li>
+                <li>Family history of kidney disease or <strong>consanguineous parents</strong></li>
+                <li>Extrarenal features suggesting a syndromic disorder (hearing loss, ocular, neurologic, skeletal)</li>
+                <li>Kidney phenotype suggestive of a known genetic disorder — <strong>cystic kidney disease, Alport spectrum, tubulopathies, congenital nephropathies</strong></li>
+                <li>Proteinuric glomerulopathies where genetic diagnosis guides therapy (e.g., SRNS, FSGS, aHUS)</li>
+                <li>Unusual disease course or unexplained CKD</li>
+                <li>Persistent hematuria, proteinuria, or unexplained kidney failure (COL4A3/4/5 testing) [citation:1][citation:13]</li>
+                <li>FSGS of unknown origin (COL4A testing) [citation:1]</li>
+            </ul>
+
+            <h3>👪 Family members & donors</h3>
+            <ul class="checklist">
+                <li>Relatives of patients with a known genetic cause</li>
+                <li>Potential living kidney donors with family history or hematuria</li>
+                <li>Patients of reproductive age with concerns about transmission [citation:8]</li>
+            </ul>
+
+            <div class="alert alert-green" style="margin-top:1rem;">
+                <strong>💡 Key reversal:</strong> Genetic testing is now <strong>recommended</strong> (2021 KDIGO / 2023 KDOQI) for adults with FSGS who have familial kidney disease, syndromic features, or steroid resistance — a reversal from the 2012 stance. Treatment resistance is a strong indicator of genetic etiology [citation:2].
+            </div>
+        </div>
+
+        <!-- APOL1 DETAIL -->
+        <div class="card">
+            <h2>🩸 APOL1 kidney disease</h2>
+            <div class="badge badge-purple" style="margin-bottom:0.8rem;">Risk modifier — incomplete penetrance</div>
+            
+            <h3>🧬 Genetics</h3>
+            <p style="font-size:0.88rem;"><strong>G1 and G2 risk variants</strong> in <span class="gene-tag">APOL1</span> (chromosome 22) — common in individuals of African ancestry. Toxic gain‑of‑function disrupts ion channels, mitochondrial function, and inflammasome activation [citation:9].</p>
+
+            <h3>📊 Penetrance & triggers</h3>
+            <ul style="font-size:0.88rem; padding-left:1.2rem;">
+                <li><strong>Incomplete penetrance</strong> — only ~15–20% of high‑risk genotype carriers develop overt nephropathy [citation:9]</li>
+                <li>Requires <strong>secondary triggers</strong>: HIV infection (HIVAN), interferon exposure, SARS‑CoV‑2, EBV, parvovirus B19, malaria [citation:9]</li>
+                <li>Associated with <strong>FSGS, HIVAN, hypertension‑attributed kidney failure</strong>; association with diabetic kidney disease is inconsistent [citation:9]</li>
+            </ul>
+
+            <h3>🔬 Testing guidance (KDIGO 2025) [citation:15]</h3>
+            <ul class="checklist" style="font-size:0.85rem;">
+                <li>Insufficient evidence for <strong>population‑level screening</strong></li>
+                <li>Genotyping can inform <strong>risk stratification, follow‑up frequency, living donation, and clinical trial eligibility</strong></li>
+                <li>Genotype results are <strong>not by themselves actionable</strong> — no established targeted therapy yet</li>
+            </ul>
+
+            <h3>💊 Management</h3>
+            <ul style="font-size:0.85rem; padding-left:1.2rem;">
+                <li>Aggressive <strong>BP control</strong> and RAS blockade</li>
+                <li>Avoid interferon therapy; aggressive HIV treatment</li>
+                <li>Emerging: <strong>inaxaplin (VX‑147)</strong> — ~47% UPCR reduction in Phase 2a (open‑label, small); Phase 3 AMPLITUDE ongoing [citation:9]</li>
+                <li><strong>MZE829</strong> — ~35.6% albuminuria reduction in Phase 2 HORIZON (open‑label, small) [citation:9]</li>
+            </ul>
+            <p style="font-size:0.8rem; color:#8a5e00; margin-top:0.5rem;">⚠️ No APOL1‑targeted agent has yet demonstrated benefit on hard kidney endpoints [citation:9].</p>
+        </div>
+    </div>
+
+    <!-- ==================== ROW 4: ADPKD + FSGS/ALPORT DETAIL ==================== -->
+    <div class="grid-2col">
+        <!-- ADPKD -->
+        <div class="card">
+            <h2>🫘 ADPKD — Autosomal dominant polycystic kidney disease</h2>
+            <p style="font-size:0.88rem;"><strong>Most common monogenic kidney disorder</strong> (~1:1000) [citation:10].</p>
+            
+            <h3>🧬 Genetics</h3>
+            <table>
+                <thead><tr><th>Gene</th><th>Frequency</th><th>Protein</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="gene-tag">PKD1</span></td><td>~85%</td><td>Polycystin‑1</td><td>More severe, earlier ESRD</td></tr>
+                    <tr><td><span class="gene-tag">PKD2</span></td><td>~15%</td><td>Polycystin‑2</td><td>Milder, later onset</td></tr>
+                    <tr><td><span class="gene-tag">PKD3</span></td><td>Rare</td><td>Unmapped</td><td>Very rare</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size:0.85rem; margin-top:0.5rem;"><strong>Two‑hit mechanism:</strong> germline mutation (first hit) + somatic second hit → focal cyst formation [citation:4].</p>
+
+            <h3>🔍 Diagnosis & testing</h3>
+            <ul style="font-size:0.88rem; padding-left:1.2rem;">
+                <li><strong>Imaging</strong> — ultrasound, MRI (cyst count/volume)</li>
+                <li><strong>Genetic testing</strong> — for atypical cases, early onset, negative imaging with strong family history, or reproductive planning</li>
+                <li><strong>Pedigree</strong> — AD pattern; vertical transmission</li>
+            </ul>
+
+            <h3>💊 Management</h3>
+            <ul style="font-size:0.88rem; padding-left:1.2rem;">
+                <li>BP control (ACEi/ARB preferred)</li>
+                <li>High water intake</li>
+                <li><strong>Tolvaptan</strong> — slows cyst growth in selected patients (monitor LFTs)</li>
+                <li>Pain management; cyst hemorrhage/infection treatment</li>
+                <li>Transplant evaluation when ESRD approaches</li>
+            </ul>
+        </div>
+
+        <!-- ALPORT + FSGS FOCUS -->
+        <div class="card">
+            <h2>🩺 Alport spectrum & FSGS — focused clinical guidance</h2>
+            
+            <h3>Alport syndrome (COL4A3/4/5)</h3>
+            <div class="alert-blue alert" style="margin:0.5rem 0 1rem; padding:0.9rem 1.2rem;">
+                <strong>🚩 When to suspect:</strong> Persistent hematuria + proteinuria, sensorineural hearing loss, ocular abnormalities (lenticonus, retinopathy), FSGS of unknown origin, or unexplained CKD. <strong>Test COL4A3/4/5 as part of initial workup</strong> [citation:1][citation:13].
+            </div>
+            <table>
+                <thead><tr><th>Inheritance</th><th>Gene(s)</th><th>Severity</th></tr></thead>
+                <tbody>
+                    <tr><td>X‑linked</td><td><span class="gene-tag">COL4A5</span></td><td>Highest risk; males severe</td></tr>
+                    <tr><td>Autosomal recessive</td><td><span class="gene-tag">COL4A3/A4</span> (biallelic)</td><td>Severe</td></tr>
+                    <tr><td>Autosomal dominant</td><td><span class="gene-tag">COL4A3/A4</span> (heterozygous)</td><td>Variable; may be mild → FSGS</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size:0.85rem; margin-top:0.5rem;"><strong>Treatment:</strong> Early <strong>RAS blockade</strong> is standard [citation:1][citation:13]. <strong>SGLT2 inhibitors</strong> may be added for adults with proteinuria and CKD [citation:1][citation:13]. <strong>Do not use immunosuppression</strong> — these are structural defects.</p>
+
+            <h3>FSGS — when genetic vs. immune?</h3>
+            <ul style="font-size:0.88rem; padding-left:1.2rem;">
+                <li><strong>Genetic FSGS:</strong> SRNS, family history, syndromic features, no response to steroids/CNIs. <strong>Avoid immunosuppression.</strong></li>
+                <li><strong>Immune‑mediated FSGS (e.g., tip variant):</strong> May respond to steroids, rituximab, CNIs. <strong>Biopsy is essential</strong> — genetic testing and biopsy can give discordant results (e.g., COL4A4 variant + steroid‑responsive tip variant FSGS) [citation:7].</li>
+                <li><strong>Genetic testing in FSGS of unknown origin:</strong> COL4A3/4/5 should be included [citation:1].</li>
+            </ul>
+
+            <div class="alert" style="background:#fef1d6; border-left-color:#f5b041; margin-top:0.8rem;">
+                <strong>⚠️ Biopsy still matters:</strong> A patient can have both a genetic variant (e.g., Alport) and an immune‑mediated FSGS that responds to immunosuppression. Treatment decisions require integrating genetics, biopsy, and clinical course [citation:7].
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ROW 5: FULL SUMMARY TABLE ==================== -->
+    <div class="card" style="grid-column:1/-1;">
+        <h2>📌 Master summary: hereditary kidney diseases — diagnosis & treatment</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Disease / gene</th>
+                        <th>Onset</th>
+                        <th>Key features</th>
+                        <th>Diagnostic approach</th>
+                        <th>Treatment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>NPHS1</strong> — congenital NS</td><td>0–3 mo</td><td>Severe nephrotic syndrome, AR</td><td>NGS panel</td><td>Supportive; transplant (no recurrence)</td></tr>
+                    <tr><td><strong>NPHS2</strong> — SRNS/FSGS</td><td>Childhood</td><td>Familial SRNS, steroid resistant</td><td>NGS panel</td><td>Avoid immunosuppression; transplant</td></tr>
+                    <tr><td><strong>INF2/TRPC6/ACTN4</strong></td><td>Adolescent/adult</td><td>AD FSGS</td><td>NGS; pedigree</td><td>Supportive; transplant if ESRD</td></tr>
+                    <tr><td><strong>WT1</strong></td><td>Infantile</td><td>Nephropathy + gonadal dysgenesis + Wilms risk</td><td>NGS + karyotype</td><td>Tumor surveillance; transplant</td></tr>
+                    <tr><td><strong>COQ2/6/8B/PDSS2</strong></td><td>Infantile–young adult</td><td>SRNS/FSGS; neuro/cardiac features</td><td>NGS panel</td><td><span class="badge-green badge">High‑dose CoQ10</span></td></tr>
+                    <tr><td><strong>COL4A3/A4/A5</strong></td><td>Childhood→adult</td><td>Hematuria, hearing loss, ocular, FSGS</td><td>NGS; test in hematuria/proteinuria/FSGS unknown</td><td>RAS blockade; SGLT2i add‑on; avoid immunosuppression</td></tr>
+                    <tr><td><strong>PKD1/PKD2</strong> — ADPKD</td><td>Adulthood</td><td>Kidney/liver cysts, HTN; AD</td><td>Imaging; genetic testing for atypical</td><td>BP control, tolvaptan (selected), transplant</td></tr>
+                    <tr><td><strong>APOL1</strong> (G1/G2)</td><td>Adulthood</td><td>FSGS, HIVAN, HTN‑attributed; incomplete penetrance</td><td>APOL1 genotyping (high‑risk populations)</td><td>BP control; RAS blockade; avoid interferon; trial eligibility</td></tr>
+                    <tr><td><strong>Family members/donors</strong></td><td>—</td><td>Genetic diagnosis enables presymptomatic screening</td><td>Targeted variant testing if proband known</td><td>Counseling; donor risk assessment</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer-note">
+            ⚕️ For educational & clinical decision support only — always integrate with nephrology & genetics expertise.<br>
+            Data synthesised from: ERKNet/ERA/ESPN Alport guideline 2024 [citation:1][citation:13]; CJASN perspective [citation:2]; KDIGO APOL1 Controversies 2025 [citation:3][citation:15]; APOL1 review 2026 [citation:9]; CKD genetic testing review 2024 [citation:8]; ADPKD genetics reviews [citation:4][citation:10]; FSGS/Alport case report [citation:7].
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem; font-size:0.8rem; color:#5b7f9a; flex-wrap:wrap; gap:0.5rem;">
+        <div>🧬 Renal Genetics Dx & Tx · interactive guide</div>
+        <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+            <span class="pill">NGS first‑line</span>
+            <span class="pill">CoQ10 = treatable</span>
+            <span class="pill">Pedigree matters</span>
+            <span class="pill">APOL1 = modifier</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
